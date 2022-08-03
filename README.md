@@ -9,3 +9,4 @@ Aplicação completa de acompanhamento de hábitos! Com direito a cadastro, logi
 - [react-calendar](https://www.npmjs.com/package/react-calendar)
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
 - [styled-components](https://styled-components.com/)
+- [Particules](https://particles.js.org/)

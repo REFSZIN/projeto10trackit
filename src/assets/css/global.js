@@ -9,9 +9,9 @@ export default createGlobalStyle`
 /* 	
 	font-family: 'Lexend Deca', sans-serif;
 	font-family: 'Playball', cursive;
-    font-family: 'Righteous', cursive;
+  font-family: 'Righteous', cursive;
 	font-family: 'Roboto', sans-serif; 
-    font-family: 'Recursive', sans-serif;
+  font-family: 'Recursive', sans-serif;
 	mobileS: '320px',
 	mobileM: '375px',
 	mobileL: '425px',
@@ -19,6 +19,15 @@ export default createGlobalStyle`
 	laptop: '1024px',
 	laptopL: '1440px',
 	desktop: '2560px'
+// build: Changes that affect the build system or external dependencies (example scopes: gulp, broccoli, npm)
+// ci: Changes to our CI configuration files and scripts (example scopes: Travis, Circle, BrowserStack, SauceLabs)
+// docs: Documentation only changes
+// feat: A new feature
+// fix: A bug fix
+// perf: A code change that improves performance
+// refactor: A code change that neither fixes a bug nor adds a feature
+// style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+// test: Adding missing tests or correcting existing tests
 */
 
 ion-icon[name="add-outline"]{
