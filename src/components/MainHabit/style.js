@@ -1,12 +1,17 @@
 import styled from 'styled-components';
 
-export const MainHab = styled.main`
+export const MainHab = styled.div`
     width: 100%;
-    height: 100%;
+    height: 100vh;
     background-color: #E5E5E5;
     padding-top: 70px;
     padding-bottom: 70px;
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 `;
+
 export const TopMainHabit  = styled.section`
     display: flex;
     flex-direction: row;
@@ -38,11 +43,30 @@ export const BoxIcon  = styled.div`
     align-items: center;
     animation: fadeInDown 1s ;
 `;
+export const  BoxHabit = styled.article`
+    width: 80%;
+    height: 91px;
+    left: 17px;
+    top: 147px;
+    background: #FFFFFF;
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-right: 5%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+    animation: fadeInLeft 1s ;
+`;
 export const CreateHabit = styled.article`
     width: 90%;
     display: flex;
     margin-left: 5%;
     margin-right: 5%;
+    margin-top: 20px;
     flex-direction: column;
     flex-wrap: nowrap;
     align-content: flex-start;
@@ -54,6 +78,7 @@ export const CreateHabit = styled.article`
     animation: fadeInRight 1s ;
 `;
 export const InputCreateHabit = styled.input`
+    margin-top: 10px;
     width: 90%;
     margin-left: 5%;
     margin-right: 5%;
@@ -142,7 +167,7 @@ export const BoxBtn  = styled.div`
     align-items: center;
     width: 95%;
     height: 40px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
     @media only screen and (min-width: 770px) {
     width: 98%;
     margin-left: 1%;
@@ -181,24 +206,6 @@ export const BtnCreate  = styled.button`
     text-align: center;
     margin-top: 30px;
     color: #FFFFFF;
-`;
-export const  BoxHabit = styled.article`
-    width: 90%;
-    height: 91px;
-    left: 17px;
-    top: 147px;
-    background: #FFFFFF;
-    border-radius: 5px;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-content: center;
-    justify-content: center;
-    align-items: flex-start;
-    animation: fadeInLeft 1s ;
 `;
 export const BoxTitleHabit  = styled.div`
     display: flex;
@@ -265,6 +272,12 @@ export const  BoxAvisoHabit = styled.section`
     align-content: center;
     flex-wrap: wrap;
     flex-direction: column;
+    @media only screen and (max-width: 400px) {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-left: 10px;
+    }
 `;
 export const Aviso = styled.span`
     position: absolute;

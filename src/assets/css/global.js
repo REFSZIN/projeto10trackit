@@ -117,13 +117,15 @@ button:hover{
     box-shadow: 1px 1px 2px 1px #126BA5;
 }
 .react-calendar{
-    font-family: 'Righteous', cursive;
+  font-family: 'Righteous', cursive;
 	width: 1400px;
 	border: #126BA5;
 	-webkit-border-radius: 53px;
 	-moz-border-radius: 53px;
 	border-radius: 12px;
 	margin-top: 20px;
+	position: relative;
+	z-index: 2;
 }
 .react-calendar button{
 	height: 60px;
@@ -133,5 +135,29 @@ button:hover{
 	-webkit-border-radius: 53px;
 	-moz-border-radius: 53px;
 	border-radius: 12px;
+}
+#simple{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw;
+	height: 100vh;
+	z-index: -1;
+}
+#simple2{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100vw ;
+	height: 100vh ;
+	z-index: 0;
+}
+#simple1{
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 100% !important;
+	height: 100% !important;
+	z-index: -1;
 }
 `

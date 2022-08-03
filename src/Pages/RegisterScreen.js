@@ -2,14 +2,12 @@ import styled from "styled-components"
 import Register from "../components/Register/Register"
 import React from 'react'
 export default function RegisterScreen(){
-    
     return(
         <Container>
             <Register />
         </Container>
     )
 }
-
 export const Container = styled.aside`
     width: 100%;
     height: 100vh;

@@ -7,6 +7,10 @@ export const MainHisto  = styled.main`
     padding-bottom: 70px;
     padding-left: 5%;
     padding-right: 5%;
+    z-index: 1;
+    position: absolute;
+    top: 0px;
+    right: 0px;
 `;
 export const TitleHisto  = styled.h2`
     width: 100px;
@@ -38,10 +42,9 @@ export const Aviso  = styled.span`
     color: #666666;
 `;
 export const BoxCalendar = styled.section`
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 80px;
+    margin-top: 70px;
+    width: 100%;
+    height: fill;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -49,9 +52,17 @@ export const BoxCalendar = styled.section`
     justify-content: space-between;
     align-items: center;
     animation: backInUp 1s;
+    @media only screen and (max-width: 1200px) {
+    width: 95%;
+    margin-left: 3%;
+    }
     @media only screen and (max-width: 770px) {
+    width: 90%;
+    margin-left: 5%;
+    }
+    @media only screen and (max-width: 370px) {
     width: 99%;
     margin-left: 0.1%;
     margin-right: 0.1%;
-    }
+}
 `

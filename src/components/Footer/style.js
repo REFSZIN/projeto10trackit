@@ -14,7 +14,7 @@ export const Foter = styled.footer`
     justify-content: space-around;
     align-items: center;
     box-shadow: 1px 1px 1px 1px #126BA5;
-    z-index: 1;
+    z-index: 3;
 `;
 export const LinkFoter = styled.h4`
     font-family: 'Lexend Deca';

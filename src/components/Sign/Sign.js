@@ -1,37 +1,34 @@
 import "./style.js";
-import {Anime, LogoSign , FormSign , InputSign, BtnSign,SpanLink } from "./style.js";
+import React from 'react'
 import logo from "../../assets/images/logo.svg";
-import { Link, useNavigate  } from "react-router-dom";
 import Loader from "../Loader/Loader"
 import axios from "axios";
-import UserContext from "../../contexts/UserContext.js";
-import { useState,useContext } from "react";
-import React from 'react'
-
+import UserContext from "../../UserContext.js"
+import {Anime,LogoSign,FormSign,InputSign,BtnSign,SpanLink} from "./style.js";
+import {useState,useContext} from "react";
+import {Link,useNavigate} from "react-router-dom";
 export default function Sing(){
     const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login`;
-    const {setToken, setUser} = useContext(UserContext);
+    const {email,setEmail,password,setPassword,setToken,setUser} = useContext(UserContext);
     const navigate = useNavigate();
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
     const [load,setLoad] = useState(0);
-
     function login(event){
         event.preventDefault();
         setLoad(1);
         const promise = axios.post(URL,
         {
-            email, password
+            email,
+            password
         });
-        promise.then(response => {
+        promise.then(resp => {
             setLoad(0)
-            setToken(response.data.token);
-            setUser(response.data);
-            navigate("/habitos");
+            setToken(resp.data.token);
+            setUser(resp.data);
+            navigate("/hoje");
         });
-        promise.catch(error => {
+        promise.catch(e => {
             setLoad(0);
-            alert(error.response.data.message);
+            alert(e.response.data.message);
         });
     };
     return(
@@ -40,7 +37,9 @@ export default function Sing(){
             <FormSign onSubmit={login}>
                 <InputSign type="email" disabled={load} value={email} placeholder="email"onChange={e => setEmail(e.target.value)} required></InputSign>
                 <InputSign type="password" disabled={load} value={password} placeholder="senha" onChange={e => setPassword(e.target.value)} required></InputSign>
-                <BtnSign disabled={load} type="submit" >{ load ? <Loader/> :`Entrar`}</BtnSign>
+                <BtnSign disabled={load} type="submit">
+                    { load ? <Loader/> :`Entrar`}
+                </BtnSign>
             </FormSign>
             <Link to="/cadastro"><SpanLink>Não tem uma conta? Cadastre-se!</SpanLink></Link>
         </Anime>

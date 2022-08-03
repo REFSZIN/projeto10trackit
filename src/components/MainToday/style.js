@@ -1,15 +1,14 @@
 import styled from 'styled-components';
 
 export const MainToda  = styled.main`
-    width: 100%;
-    height: 100%;
+    width: 100vw;
+    height: 100vh;
     background-color: #E5E5E5;
     padding-top: 70px;
     padding-bottom: 70px;
-    margin-bottom: 30px;
 `;
 
-export const TopToda  = styled.section`
+export const TopToda = styled.section`
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -22,6 +21,7 @@ export const TopToda  = styled.section`
     margin-right: 5%;
     margin-bottom: 20px;
     animation: slideInLeft 1s;
+    z-index: 2;
 `;
 export const Day  = styled.h3`
     width: 172px;
@@ -58,6 +58,8 @@ export const Habit  = styled.article`
     justify-content: center;
     align-items: flex-start;
     animation: pulse 1s;
+    z-index: 2;
+    position: relative;
 `;
 export const TitleHabit  = styled.h4`
     height: 25px;
@@ -70,7 +72,7 @@ export const TitleHabit  = styled.h4`
     margin-left: 20px;
     margin-bottom: 5px;
     @media only screen and (max-width: 370px) {
-    margin-left: 5px;
+    margin-left: 15px;
     }
 `;
 export const ScoreHabit  = styled.span`
@@ -86,6 +88,20 @@ export const ScoreHabit  = styled.span`
     @media only screen and (max-width: 370px) {
     margin-right: 5px;
     }
+`;export const BoxChecked = styled.div`
+display: flex;
+width: 69px;
+height: 69px;
+background: #E7E7E7;
+border-radius: 5px;
+flex-wrap: nowrap;
+align-content: center;
+justify-content: center;
+align-items: center;
+margin-right: 20px;
+@media only screen and (max-width: 370px) {
+margin-left: 5px;
+}
 `;
 export const BoxCheck = styled.div`
     display: flex;
