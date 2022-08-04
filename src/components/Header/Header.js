@@ -7,13 +7,13 @@ import UserContext from "../../UserContext";
 import { useContext } from "react";
 
 export default function Header(){
-    const { user } = useContext(UserContext);
+    const { name, image } = useContext(UserContext);
     return(
         <Head>
             <Link to="/"><LogoHeader src={logo}/></Link>
             <BoxUser>
-                <UserName>{user.name}</UserName>
-                <UserImg src={user.image}/>
+                <UserName>{name}</UserName>
+                <UserImg src={image}/>
             </BoxUser>
         </Head>
     )

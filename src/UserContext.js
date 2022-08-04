@@ -3,79 +3,65 @@ import React, {useState} from "react";
 import axios from "axios";
 import { Particles } from "@blackbox-vision/react-particles";
 const UserContext = createContext();
-
 export default UserContext;
 
 export function UserProvider (props){
     const [token, setToken] = useState(null);
-    const [data, setData] = useState(JSON.parse(localStorage.getItem("trackit")));
-    const [habitData,setHabitData] = useState({});
-    const [todayHabit,setTodayHabit] = useState({});
-    const [historicData, setHistoricData] = useState({});
+    const [data, setData] = useState(JSON.parse(localStorage.getItem("User")));
+    const [habitData,setHabitData] = useState([]);
+    const [today,setToday] = useState([]);
+    const [historicData, setHistoricData] = useState([]);
     const [email,setEmail] = useState('');
     const [name,setName] = useState('');
     const [image,setImage] = useState('');
     const [user,setUser] = useState('');
     const [percentage,setPercentage] = useState(0);
     const [password,setPassword] = useState('');
-    const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/` 
- 
-const postSign = () => {
-    const auth = localStorage.getItem("trackit");
-    const params = {
-        // props  POST
-        // {
-        // 	email: "...",
-        // 	password: "..."
-        // }
-        // O servidor responderá com um objeto no formato
-        // {
-        //     "id": 3,
-        //     "name": "Joe",
-        //     "image": "https://http.cat/411.jpg",
-        //     "email": "joe@respondeai.com.br",
-        //     "password": "123456",
-        //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiaWF0IjoxNjIxMjg0NzExfQ.b8e3bYm7TnU5p6pfrCPPbzboax6gvh_gGNFR4T51FxY"
-        // }
-    }
-    const headers = {
-        headers: { Authorization: `Bearer ${auth.token}`}
+    const [load,setLoad] = useState(false);
+    const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit` 
+
+const postSign = async () => {
+    const params = 
+    {
+        email: email,
+        password: password
     }
     try {
-        const req = axios.post(`${URL}/login`, {params}, {headers});
+        const req = axios.post(`${URL}/auth/login/`, params);
         req.then(res => {
-            console.log(res);
+            console.log(res.data)
+            setToken(res.data.token)
+            setImage(res.data.image);   
+            setName(res.data.name);   
+            setLoad(0);
+            setData(res.data)
+            localStorage.setItem("User",JSON.stringify(res.data))
         })
-            .catch(err => {
-                console.log(err);
-            });
+        req.catch(err => {
+            alert(err.response.data.message);
+            setLoad(0);
+        });
     } 
     catch (error) {
         throw new Error(error);
     }
 }
-    const postSignUp = () => {
-    const auth = localStorage.getItem("trackit");
+    const postSignUp = async () => {
     const params = {
-        // props
-        // {
-        //     email: "...",
-        //     name: "...",
-        //     image: "...",
-        //     password: "..."
-        // }
+        email: email,
+        name: name,
+        image: image,
+        password: password
     }
-    const headers = {
-        headers: { Authorization: `Bearer ${auth.token}`}
-    }
+    console.log(params)
     try {
-        const req = axios.post(`${URL}/auth/sign-up`, {params}, {headers});
+        const req = axios.post(`${URL}/auth/sign-up/`, params);
         req.then(res => {
-            
+            return res;
         })
-            .catch(err => {
-                console.log(err);
-            });
+        .catch(err => {
+            alert(err.response.user);
+        });
     } 
     catch (error) {
         throw new Error(error);
@@ -84,17 +70,8 @@ const postSign = () => {
 const postHabits = () => {
     const auth = localStorage.getItem("trackit");
     const params = {
-        // props
-        // {
-        // 	name: "Nome do hábito",
-        // 	days: [1, 3, 5] // segunda, quarta e sexta
-        // }
-        // O servidor responderá com um objeto no formato
-        // {
-        // 	id: 1,
-        // 	name: "Nome do hábito",
-        // 	days: [1, 3, 5]
-        // }
+        name: "Nome do hábito",
+        days: [1, 3, 5]
     }
     const headers = {
         headers: { Authorization: `Bearer ${auth.token}`}
@@ -102,11 +79,11 @@ const postHabits = () => {
     try {
         const req = axios.post(`${URL}/habits`, {params}, {headers});
         req.then(res => {
-            console.log(res);
+            return res;
         })
-            .catch(err => {
-                console.log(err);
-            });
+        .catch(err => {
+            alert(err.response.user.message);
+        });
     } 
     catch (error) {
         throw new Error(error);
@@ -136,11 +113,11 @@ const getHabits = () => {
     try {
         const req = axios.get(`${URL}/habits`, {params}, {headers});
         req.then(res => {
-            
+            return res;
         })
-            .catch(err => {
-                console.log(err);
-            });
+        .catch(err => {
+            alert(err.response.user.message);
+        });
     } 
     catch (error) {
         throw new Error(error);
@@ -171,10 +148,10 @@ const deleteHabits = () => {
     try {
         const req = axios.post(`${URL}/login`, {params}, {headers});
         req.then(res => {
-            console.log(res);
+            return res;
         })
             .catch(err => {
-                console.log(err);
+                alert(err.response.user.message);
             });
     } 
     catch (error) {
@@ -202,9 +179,10 @@ const getToday = () => {
         const req = axios.post(`${URL}/login`, {params}, {headers});
         req.then(res => {
             console.log(res);
+            return res;
         })
             .catch(err => {
-                console.log(err);
+                alert(err.response.user.message);
             });
     } 
     catch (error) {
@@ -228,9 +206,10 @@ const postCheck = () => {
         const req = axios.post(`${URL}/login`, {params}, {headers});
         req.then(res => {
             console.log(res);
+            return res;
         })
             .catch(err => {
-                console.log(err);
+                alert(err.response.user.message);
             });
     } 
     catch (error) {
@@ -254,9 +233,10 @@ const postUnCheck = () => {
         const req = axios.post(`${URL}/login`, {params}, {headers});
         req.then(res => {
             console.log(res);
+            return res;
         })
             .catch(err => {
-                console.log(err);
+                alert(err.response.user.message);
             });
     } 
     catch (error) {
@@ -290,10 +270,10 @@ const getHistory = () => {
     try {
         const req = axios.post(`${URL}/login`, {params}, {headers});
         req.then(res => {
-            console.log(res);
+            return res;
         })
             .catch(err => {
-                console.log(err);
+                alert(err.response.user.message);
             });
     } 
     catch (error) {
@@ -365,7 +345,7 @@ const ParticlesJss = () => (
     return (
         <UserContext.Provider 
             value={{
-                postCheck,postUnCheck,setTodayHabit,
+                postCheck,postUnCheck,setToday,
                 getHistory,getToday,setHistoricData,
                 postHabits,getHabits,historicData,
                 postSignUp,postSign,deleteHabits,
@@ -374,7 +354,7 @@ const ParticlesJss = () => (
                 email,setEmail,token,name,
                 setName,setToken,image,setImage,
                 password,setPassword,data,setData,
-                habitData,setHabitData,todayHabit,
+                habitData,setHabitData,today,load,setLoad
             }}>
             {props.children}
         </UserContext.Provider>

@@ -1,12 +1,31 @@
 import "./style.js";
 import React, { useState } from 'react'
-import {  MainToda, TopToda, Day, DescDay, DescDayOn, Habit, TitleHabit, ScoreHabit ,BoxCheck,BoxChecked } from "./style.js";
+import {MainToda,TopToda,Day,DescDay,DescDayOn,Habit,TitleHabit,ScoreHabit,BoxCheck,BoxChecked} from "./style.js";
 import UserContext from "../../UserContext";
 import { useContext } from "react";
-
+import axios from "axios";
 export default function MainToday(){
-    const {ParticlesJss} = useContext(UserContext);
+    const {ParticlesJss, data ,setToken,setImage,setName,setData,setLoad} = useContext(UserContext);
     const [check, setCheck] = useState(false)
+    if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+        if (localStorage.length > 0) {
+            setLoad(1);
+        axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
+            {
+                email: data.email,
+                password: data.password,
+            })
+        .then(res => {
+            setToken(res.data.token);
+            setImage(res.data.image);   
+            setName(res.data.name);   
+            setData(res.data);
+        })
+        .catch(err => {
+            alert(err.response.data.message);
+            setLoad(0);
+        });}
+    }
     return(
         <MainToda>
             <TopToda>

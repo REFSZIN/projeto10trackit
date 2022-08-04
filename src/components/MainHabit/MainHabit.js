@@ -1,13 +1,32 @@
-import { MainHab,BtnCreateExit , ArticleDays, TopMainHabit,H2,BoxIcon,CreateHabit,InputCreateHabit,DivDays ,DaysCreateHabit,BoxBtn,BtnCreate,BoxHabit,BoxTitleHabit, TitleHabit ,DaysHabit, BoxAvisoHabit, Aviso } from "./style.js";
 import "./style.js";
 import UserContext from "../../UserContext";
-import { useContext, useState } from "react";
+import { useContext, useState,useEffect } from "react";
 import React from 'react'
-
+import {MainHab,BtnCreateExit,ArticleDays,TopMainHabit,H2,BoxIcon,CreateHabit,InputCreateHabit,DivDays,DaysCreateHabit,BoxBtn,BtnCreate,BoxHabit,BoxTitleHabit,
+        TitleHabit,DaysHabit, BoxAvisoHabit,Aviso} from "./style.js";
+import  axios  from "axios";
 export default function MainHabit(){
-    // habitData, todayHabit,setTodayHabit,setHabitData,historicData,setHistoricData,setPercentage, 
-    const {ParticlesJs} = useContext(UserContext);
+    const {ParticlesJs,data,setToken,setImage,setName,setData,setLoad} = useContext(UserContext);
     const [click, setClike] = useState();
+    if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
+        useEffect(() => {
+            if (localStorage.length > 0) {
+            setLoad(1);
+            axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
+                {
+                    email: data.email,
+                    password: data.password,
+                })
+            .then(res => {
+                setToken(res.data.token);
+                setImage(res.data.image);   
+                setName(res.data.name);   
+                setData(res.data);
+            })
+            .catch(err => {
+                alert(err.response.data.message);
+            });}}, [])
+        }
     return(
         <MainHab>
             <TopMainHabit>
