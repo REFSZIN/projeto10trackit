@@ -62,11 +62,13 @@ export const Habit  = styled.article`
     position: relative;
 `;
 export const TitleHabit  = styled.h4`
+padding-bottom: 10px;
     height: 25px;
+    width: 200px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
-    font-size: 19.976px;
+    font-size: 16.976px;
     line-height: 25px;
     color: #666666;
     margin-left: 20px;
@@ -76,6 +78,7 @@ export const TitleHabit  = styled.h4`
     }
 `;
 export const ScoreHabit  = styled.span`
+    padding-top: 12px;
     width: 148px;
     height: 32px;
     font-family: 'Lexend Deca';

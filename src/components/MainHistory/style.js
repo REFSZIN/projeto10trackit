@@ -59,6 +59,7 @@ export const BoxCalendar = styled.section`
     @media only screen and (max-width: 770px) {
     width: 90%;
     margin-left: 5%;
+    margin-top: 20px;
     }
     @media only screen and (max-width: 370px) {
     width: 99%;

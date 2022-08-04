@@ -12,7 +12,7 @@ export default function Header(){
         <Head>
             <Link to="/"><LogoHeader src={logo}/></Link>
             <BoxUser>
-                <UserName>{name}</UserName>
+                <UserName>Olá, {name}</UserName>
                 <UserImg src={image}/>
             </BoxUser>
         </Head>

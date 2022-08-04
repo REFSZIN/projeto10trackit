@@ -35,10 +35,10 @@ export const UserImg = styled.img`
     margin-left: 10px;
 `;
 export const UserName = styled.figcaption`
-    margin-top: 15px;
+    margin-top: 12px;
     width: fit-content;
     font-family: 'Lexend Deca';
-    font-style: normal;
+    font-style: oblique;
     font-weight: 400;
     font-size: 19.976px;
     line-height: 25px;

@@ -45,7 +45,7 @@ export const BoxIcon  = styled.div`
 `;
 export const  BoxHabit = styled.article`
     width: 80%;
-    height: 91px;
+    height: 111px;
     left: 17px;
     top: 147px;
     background: #FFFFFF;
@@ -61,7 +61,7 @@ export const  BoxHabit = styled.article`
     align-items: flex-start;
     animation: fadeInLeft 1s ;
 `;
-export const CreateHabit = styled.article`
+export const CreateHabit = styled.form`
     width: 90%;
     display: flex;
     margin-left: 5%;
@@ -116,7 +116,23 @@ export const InputCreateHabit = styled.input`
     }
 `;
 export const ArticleDays = styled.article`
-display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 5%;
+    margin-top: 30px;
+    @media only screen and (min-width: 770px) {
+    width: 98%;
+    margin-left: 1%;
+    margin-right: 1%;
+    }
+`
+export const ArticleDaysTitle = styled.article`
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     align-content: center;
@@ -136,7 +152,8 @@ export const DivDays = styled.div`
     height: 30px;
     left: 70px;
     top: 218px;
-    background: #FFFFFF;
+    background-color: ${ props => props.boxColor ? '#CFCFCF' : '#ffffff' };
+    color: ${ props => props.boxColor ? '#ffffff' : '#DBDBDB' };
     border: 1px solid #D5D5D5;
     border-radius: 5px;
     align-content: center;
@@ -224,7 +241,7 @@ export const BoxTitleHabit  = styled.div`
     }
 `;
 export const TitleHabit  = styled.h2`
-    width: 208px;
+    width: 308px;
     height: 25px;
     font-family: 'Lexend Deca';
     font-style: normal;
@@ -232,6 +249,9 @@ export const TitleHabit  = styled.h2`
     font-size: 19.976px;
     line-height: 25px;
     color: #666666;
+    @media only screen and (max-width: 470px) {
+    width: 208px;
+    }
 `;
 export const  DaysHabit = styled.span`
     width: 30px;

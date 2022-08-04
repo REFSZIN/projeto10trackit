@@ -1,31 +1,20 @@
 import "./style.js";
-import React, { useState } from 'react'
+import * as dayjs from 'dayjs'
+import * as isLeapYear from 'dayjs/plugin/isLeapYear'
+import 'dayjs/locale/pt-br'
+import React, { useEffect } from 'react'
 import {MainToda,TopToda,Day,DescDay,DescDayOn,Habit,TitleHabit,ScoreHabit,BoxCheck,BoxChecked} from "./style.js";
 import UserContext from "../../UserContext";
 import { useContext } from "react";
-import axios from "axios";
 export default function MainToday(){
-    const {ParticlesJss, data ,setToken,setImage,setName,setData,setLoad} = useContext(UserContext);
-    const [check, setCheck] = useState(false)
-    if (performance.navigation.type === performance.navigation.TYPE_RELOAD) {
-        if (localStorage.length > 0) {
-            setLoad(1);
-        axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login",
-            {
-                email: data.email,
-                password: data.password,
-            })
-        .then(res => {
-            setToken(res.data.token);
-            setImage(res.data.image);   
-            setName(res.data.name);   
-            setData(res.data);
-        })
-        .catch(err => {
-            alert(err.response.data.message);
-            setLoad(0);
-        });}
-    }
+    dayjs.extend(isLeapYear)
+    dayjs.locale('pt-br')
+    const {ParticlesJss,localmenteLogado,getToday,today} = useContext(UserContext);
+    useEffect(() => {
+        localmenteLogado();
+        getToday();
+    }, []);
+    console.log(today) 
     return(
         <MainToda>
             <TopToda>
@@ -33,50 +22,20 @@ export default function MainToday(){
                 <DescDay>Nenhum hábito concluído ainda</DescDay>
                 <DescDayOn>67% dos hábitos concluídos</DescDayOn>
             </TopToda>
-            <Habit>
-                <TitleHabit>Ler 1 capítulo de livro</TitleHabit>
-                <ScoreHabit>Sequência atual: 4 dias<br/> Seu recorde: 5 dias</ScoreHabit>
-                {!check ?
-                <BoxChecked onClick={() => setCheck(true)}>
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxChecked>:
-                <BoxCheck onClick={() => setCheck(false)} >
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxCheck>}
-            </Habit>
-            <Habit>
-                <TitleHabit>Ler 1 capítulo de livro</TitleHabit>
-                <ScoreHabit>Sequência atual: 4 dias<br/> Seu recorde: 5 dias</ScoreHabit>
-                {!check ?
-                <BoxChecked onClick={() => setCheck(true)}>
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxChecked>:
-                <BoxCheck onClick={() => setCheck(false)} >
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxCheck>}
-            </Habit>
-            <Habit>
-                <TitleHabit>Ler 1 capítulo de livro</TitleHabit>
-                <ScoreHabit>Sequência atual: 4 dias<br/> Seu recorde: 5 dias</ScoreHabit>
-                {!check ?
-                <BoxChecked onClick={() => setCheck(true)}>
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxChecked>:
-                <BoxCheck onClick={() => setCheck(false)} >
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxCheck>}
-            </Habit>
-            <Habit>
-                <TitleHabit>Ler 1 capítulo de livro</TitleHabit>
-                <ScoreHabit>Sequência atual: 4 dias<br/> Seu recorde: 5 dias</ScoreHabit>
-                {!check ?
-                <BoxChecked onClick={() => setCheck(true)}>
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxChecked>:
-                <BoxCheck onClick={() => setCheck(false)} >
-                    <ion-icon name="checkmark-outline"></ion-icon>
-                </BoxCheck>}
-            </Habit>
+            {today.length !== 0
+                        ? today.map((habitToday,index) =>
+                        <Habit key={index}>
+                        <TitleHabit>{habitToday.name}</TitleHabit>
+                        <ScoreHabit>{habitToday.currentSequence}<br/>{habitToday.highestSequence}</ScoreHabit>
+                        {!habitToday.done ?
+                        <BoxChecked>
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </BoxChecked>:
+                        <BoxCheck >
+                            <ion-icon name="checkmark-outline"></ion-icon>
+                        </BoxCheck>}
+                    </Habit>)
+                        : ''}
             <ParticlesJss/>
         </MainToda>
     );

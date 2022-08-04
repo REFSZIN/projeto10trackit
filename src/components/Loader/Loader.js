@@ -9,6 +9,9 @@ export default function Loader(){
                 height={40} 
                 width={90}
                 margin={40}
+                display="flex"
+                align-items="center"
+                justify-content="center"
             />
         </>
         );
