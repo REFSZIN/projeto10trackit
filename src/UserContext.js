@@ -146,14 +146,17 @@ const deleteHabits = (props) => {
         throw new Error(error);
     }
 }
-const getToday = () => {
+const getToday = (props) => {
+    console.log(`DATA TOKEN: `, data.token)
+    console.log(`GET TODAY `, today )
     const headers = {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
         const req = axios.get(`${URL}/habits/today`,headers);
         req.then(res => {
-            setToday(...today, res)
+            setToday(res.data)
+            console.log(res)
         })
             .catch(err => {
                 alert(err.response);

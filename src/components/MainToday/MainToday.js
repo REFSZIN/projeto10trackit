@@ -26,7 +26,7 @@ export default function MainToday(){
                         ? today.map((habitToday,index) =>
                         <Habit key={index}>
                         <TitleHabit>{habitToday.name}</TitleHabit>
-                        <ScoreHabit>{habitToday.currentSequence}<br/>{habitToday.highestSequence}</ScoreHabit>
+                        <ScoreHabit>Sequência atual: {habitToday.currentSequence} dias<br/> Seu recorde: {habitToday.highestSequence} dias </ScoreHabit>
                         {!habitToday.done ?
                         <BoxChecked>
                             <ion-icon name="checkmark-outline"></ion-icon>
