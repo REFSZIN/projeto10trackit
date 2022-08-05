@@ -173,7 +173,8 @@ export const DaysCreateHabit = styled.span`
     font-weight: 400;
     font-size: 19.976px;
     line-height: 25px;
-    color: #DBDBDB;
+    background-color: ${props => props.boxColor ? '#CFCFCF' : '#ffffff'};
+    color: ${props => props.boxColor ? '#ffffff' : '#DBDBDB'};
 `;
 export const BoxBtn  = styled.div`
     display: flex;

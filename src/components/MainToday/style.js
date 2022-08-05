@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MainToda  = styled.main`
     width: 100vw;
-    height: 100vh;
+    height: fit-content;
     background-color: #E5E5E5;
     padding-top: 70px;
     padding-bottom: 70px;
@@ -24,7 +24,18 @@ export const TopToda = styled.section`
     z-index: 2;
 `;
 export const Day  = styled.h3`
-    width: 172px;
+    width: 250px;
+    height: 29px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30.976px;
+    line-height: 29px;
+    color: #126BA5;
+    display: inline;
+`;
+export const NumberDay  = styled.span`
+    width: 250px;
     height: 29px;
     font-family: 'Lexend Deca';
     font-style: normal;
@@ -36,12 +47,24 @@ export const Day  = styled.h3`
 export const DescDay = styled.span`
     width: 278px;
     height: 22px;
+    margin-top: 10px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
     font-size: 17.976px;
     line-height: 22px;
     color: #BABABA;
+`;
+export const DescqDay = styled.span`
+    margin-left: 10px;
+    margin-top: 10px;
+    height: 12px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 27.976px;
+    line-height: 22px;
+    color: #126BA5;
 `;
 export const Habit  = styled.article`
     display: flex;
@@ -68,7 +91,7 @@ padding-bottom: 10px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
-    font-size: 16.976px;
+    font-size: 19.976px;
     line-height: 25px;
     color: #666666;
     margin-left: 20px;
@@ -106,7 +129,7 @@ margin-right: 20px;
 margin-left: 5px;
 }
 `;
-export const BoxCheck = styled.div`
+export const BoxUnCheck = styled.div`
     display: flex;
     width: 69px;
     height: 69px;
@@ -130,4 +153,6 @@ export const DescDayOn  = styled.span`
     font-size: 17.976px;
     line-height: 22px;
     color: #8FC549;
+    margin-left: 15px;
+    margin-top: 4px;
 `;

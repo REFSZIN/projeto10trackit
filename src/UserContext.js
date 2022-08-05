@@ -20,7 +20,10 @@ export function UserProvider (props){
     const [percentage,setPercentage] = useState(0);
     const [password,setPassword] = useState('');
     const [load,setLoad] = useState(false);
+    const [click, setClike] = useState(false);
+    const [clickToday,setClickToday] = useState(false);
     const URL =`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit` 
+    let valor = 0;
 
 const localmenteLogado = () => {
     if (performance.navigation.type === performance.navigation.TYPE_RELOAD && localStorage.length > 0) {
@@ -74,7 +77,6 @@ const postSignUp = async () => {
         image: image,
         password: password
     }
-    console.log(params)
     try {
         const req = axios.post(`${URL}/auth/sign-up/`, params);
         req.then(res => {
@@ -128,15 +130,15 @@ const getHabits = () => {
     }
 }
 const deleteHabits = (props) => {
-    console.log(props)
-    console.log(data.token)
     const headers = {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
-        const req = axios.post(`${URL}/habits/${props}`,headers);
-        req.then(res => {
-            setHabitData(res.data)
+        const req = axios.delete(`${URL}/habits/${props}`, headers);
+        req.then((res) => {
+            let aux = [...habitData];
+            aux = aux.filter(item => item.id !== parseInt(props))
+            setHabitData([...aux]);
         })
             .catch(err => {
                 alert(err.response.data);
@@ -146,68 +148,50 @@ const deleteHabits = (props) => {
         throw new Error(error);
     }
 }
-const getToday = (props) => {
-    console.log(`DATA TOKEN: `, data.token)
-    console.log(`GET TODAY `, today )
+const getToday = () => {
+
     const headers = {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
-        const req = axios.get(`${URL}/habits/today`,headers);
+        const req = axios.get(`${URL}/habits/today`, headers);
         req.then(res => {
-            setToday(res.data)
-            console.log(res)
+            setToday(res.data);
         })
-            .catch(err => {
-                alert(err.response);
-            });
+        .catch(err => {
+            alert(err.response);
+        });
     } 
     catch (error) {
         throw new Error(error);
     }
 }
-const postCheck = () => {
-    const params = {
-        // props /habits/ID_DO_HABITO/check Marcar hábito como feito POST  
-        //         Se:
-        // - O hábito já estiver marcado
-        // - O hábito não for do dia atual
-        // - O hábito não for do usuário logado
-        // o servidor vai responder com `Bad Request (400)`.
-    }
+const postCheck = (props) => {
     const headers = {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
-        const req = axios.post(`${URL}/habits/ID_DO_HABITO/check`, {params}, {headers});
+        const req = axios.post(`${URL}/habits/${props}/check`,{}, headers);
         req.then(res => {
-            console.log(res);
+            getToday();
             return res;
         })
             .catch(err => {
-                alert(err.response.data.message);
+                alert(err.response.data);
             });
     } 
     catch (error) {
         throw new Error(error);
     }
 }
-const postUnCheck = () => {
-    const params = {
-        // props /habits/ID_DO_HABITO/uncheck Marcar hábito como feito POST
-        //         Se:
-        // - O hábito não estiver marcado
-        // - O hábito não for do dia atual
-        // - O hábito não for do usuário logado
-        // o servidor vai responder com `Bad Request (400)`.
-    }
+const postUnCheck = (props) => {
     const headers = {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
-        const req = axios.post(`${URL}/habits/:ID_DO_HABITO/uncheck`, {params}, {headers});
+        const req = axios.post(`${URL}/habits/${props}/uncheck`,{}, headers);
         req.then(res => {
-            console.log(res);
+            getToday();
             return res;
         })
             .catch(err => {
@@ -223,7 +207,7 @@ const getHistory = () => {
         headers: { Authorization: `Bearer ${data.token}`}
     }
     try {
-        const req = axios.post(`${URL}/habits/history/daily`,headers);
+        const req = axios.post(`${URL}/habits/history/daily`, {}, headers);
         req.then(res => {
             setHistoricData(res.data)
         })
@@ -305,12 +289,12 @@ const ParticlesJss = () => (
                 postHabits,getHabits,historicData,
                 postSignUp,postSign,deleteHabits,
                 ParticlesJs,ParticlesJss,setUser,
-                setPercentage,percentage,user,
+                setPercentage,percentage,user,setClickToday,
                 email,setEmail,token,name,setColor,
-                setName,setToken,image,setImage,
-                password,setPassword,data,setData,
+                setName,setToken,image,setImage,clickToday,
+                password,setPassword,data,setData,click,setClike,
                 habitData,setHabitData,today,load,setLoad,localmenteLogado,
-                nameHabit,setNameHabit,daysHabit,setDaysHabit,
+                nameHabit,setNameHabit,daysHabit,setDaysHabit,valor
             }}>
             {props.children}
         </UserContext.Provider>

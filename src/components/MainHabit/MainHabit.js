@@ -1,22 +1,22 @@
 import "./style.js";
 import UserContext from "../../UserContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext,useEffect } from "react";
 import Loader from "../Loader/Loader.js";
 import React from 'react'
 import {ArticleDaysTitle,MainHab,BtnCreateExit,ArticleDays,TopMainHabit,H2,BoxIcon,CreateHabit,InputCreateHabit,DivDays,DaysCreateHabit,BoxBtn,BtnCreate,BoxHabit,BoxTitleHabit,
         TitleHabit,DaysHabit, BoxAvisoHabit,Aviso} from "./style.js";
 export default function MainHabit(){
-    const {ParticlesJs,localmenteLogado,postHabits,deleteHabits,nameHabit,setNameHabit,daysHabit,setDaysHabit,setLoad,load,habitData,data,getHabits,setColor,color} = useContext(UserContext);
-    const [click, setClike] = useState(false);
+    const {ParticlesJs,localmenteLogado,postHabits,deleteHabits,nameHabit,setNameHabit,daysHabit,setDaysHabit,setLoad,load,habitData,getHabits,setColor,color,click,setClike} = useContext(UserContext);
     useEffect(() => {
         localmenteLogado();
         setLoad(0);
         getHabits();
+        setClike(false)
     }, []);
     function createHabit(event) {
         event.preventDefault();
         if (daysHabit.length === 0) {
-            alert("Você deve selecionar pelo menos um dia!");
+            alert("Você tem que selecionar pelo menos um dia!💤💤");
             return;
         }
         setLoad(1);
@@ -32,10 +32,18 @@ export default function MainHabit(){
             aux.splice(aux.indexOf(day), 1);
             setDaysHabit([...aux]);
         }
-        const aux = [...color];
+        const aux = [color];
         aux[day] = !aux[day]
         setColor([...aux]);
     }
+    const deleteHabit = (props) =>{
+        let result = window.confirm('Are you sure you want to delete?');
+        let message = result ?"DELETED":'UNDELETE';
+        alert(message);
+        if(message === "DELETED"){
+            deleteHabits(props)
+        }
+    };
     return(
         <MainHab>
             <TopMainHabit>
@@ -48,25 +56,25 @@ export default function MainHabit(){
                 <CreateHabit onSubmit={createHabit}>
                     <InputCreateHabit placeholder="Nome do hábito" value={nameHabit} disabled={load} onChange={e => setNameHabit(e.target.value)} required></InputCreateHabit>
                     <ArticleDaysTitle>
-                        <DivDays  value={daysHabit}  disabled={load} onClick={ (e) => checkDay(0)} >
+                        <DivDays  value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(0)} >
                             <DaysCreateHabit>D</DaysCreateHabit>
                         </DivDays>
-                        <DivDays value={daysHabit}  disabled={load} onClick={ (e) => checkDay(1)} >
+                        <DivDays value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(1)} >
                             <DaysHabit>S</DaysHabit>
                         </DivDays>
-                        <DivDays  value={daysHabit}  disabled={load} onClick={ (e) => checkDay(2)} >
+                        <DivDays  value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(2)} >
                             <DaysCreateHabit>T</DaysCreateHabit>
                         </DivDays>
-                        <DivDays value={daysHabit}  disabled={load} onClick={ (e) => checkDay(3)} >
+                        <DivDays value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(3)} >
                             <DaysHabit>Q</DaysHabit>
                         </DivDays>
-                        <DivDays value={daysHabit}  disabled={load} onClick={ (e) => checkDay(4)} >
+                        <DivDays value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(4)} >
                             <DaysCreateHabit>Q</DaysCreateHabit>
                         </DivDays>
-                        <DivDays  value={daysHabit}  disabled={load} onClick={ (e) => checkDay(5)} >
+                        <DivDays  value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(5)} >
                             <DaysHabit>S</DaysHabit>
                         </DivDays>
-                        <DivDays value={daysHabit}  disabled={load} onClick={ (e) => checkDay(6)} >
+                        <DivDays value={daysHabit}  disabled={load} boxColor={setColor[!color]} onClick={ (e) => checkDay(6)} >
                             <DaysCreateHabit>S</DaysCreateHabit>
                         </DivDays>
                     </ArticleDaysTitle>
@@ -81,7 +89,7 @@ export default function MainHabit(){
                         <BoxHabit key={index}>
                         <BoxTitleHabit>
                             <TitleHabit>{habit.name}</TitleHabit>
-                            <ion-icon name="trash-outline" id={habit.id} onClick={e => deleteHabits(e.target.id, data.token)}></ion-icon>
+                            <ion-icon name="trash-outline" id={habit.id} onClick={e => deleteHabit(habit.id)}></ion-icon>
                         </BoxTitleHabit>
                             <ArticleDays>   
                                 <DivDays boxColor={habit.days.includes(0)}>
@@ -106,7 +114,7 @@ export default function MainHabit(){
                                     <DaysHabit>S</DaysHabit>
                                 </DivDays>
                             </ArticleDays>
-                        </BoxHabit> )
+                        </BoxHabit> ).reverse()
                         : ''}
             <BoxAvisoHabit>
                 {habitData.length === 0 ?<Aviso>Você não tem nenhum hábito cadastrado ainda.<br/> Adicione um hábito para começar a trackear!</Aviso> : <></>}
