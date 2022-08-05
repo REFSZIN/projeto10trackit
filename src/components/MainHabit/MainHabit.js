@@ -23,6 +23,7 @@ export default function MainHabit(){
         postHabits();
         setNameHabit('');
         setDaysHabit([]);
+        setClike(false);
     }
     function checkDay(day) {
         if (!daysHabit.includes(day)) {

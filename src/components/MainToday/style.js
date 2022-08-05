@@ -100,6 +100,21 @@ padding-bottom: 10px;
     margin-left: 15px;
     }
 `;
+export const ScoreHabitVerde  = styled.span`
+    padding-top: 12px;
+    width: 148px;
+    height: 32px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12.976px;
+    line-height: 16px;
+    color: #8FC549;
+    margin-left: 20px;
+    @media only screen and (max-width: 370px) {
+    margin-right: 5px;
+    }
+`;
 export const ScoreHabit  = styled.span`
     padding-top: 12px;
     width: 148px;
@@ -114,7 +129,8 @@ export const ScoreHabit  = styled.span`
     @media only screen and (max-width: 370px) {
     margin-right: 5px;
     }
-`;export const BoxChecked = styled.div`
+`;
+export const BoxChecked = styled.div`
 display: flex;
 width: 69px;
 height: 69px;

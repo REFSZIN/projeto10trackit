@@ -38,6 +38,13 @@ const localmenteLogado = () => {
             setImage(res.data.image);   
             setName(res.data.name);   
             setData(res.data);
+            let k = 0;
+            for (let i = 0; i < today.length; i++) {
+                if (today[i].done === true) {
+                    k++;
+                }
+            setPercentage((100 * (k / today.length)));
+        }
         })
         .catch(err => {
             alert(err.response.data.message);
@@ -192,6 +199,7 @@ const postUnCheck = (props) => {
         const req = axios.post(`${URL}/habits/${props}/uncheck`,{}, headers);
         req.then(res => {
             getToday();
+            
             return res;
         })
             .catch(err => {
@@ -204,7 +212,7 @@ const postUnCheck = (props) => {
 }
 const getHistory = () => {
     const headers = {
-        headers: { Authorization: `Bearer ${data.token}`}
+        headers: { Authorization: `Bearer ${token}`}
     }
     try {
         const req = axios.post(`${URL}/habits/history/daily`, {}, headers);

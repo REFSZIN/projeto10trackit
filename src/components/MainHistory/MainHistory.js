@@ -13,7 +13,6 @@ export default function MainHabit(){
     let aux = []
     useEffect(() => {
         localmenteLogado();
-        getHistory();
     }, []);
     function onChange(calDate) {
         setCalDate(calDate) 
@@ -29,7 +28,7 @@ export default function MainHabit(){
                 onChange={onChange}
                 value={calDate}
                 locale={'pt-br'}
-                tileClassName={({ date, view }) => {
+                tileClassName={({ date }) => {
                 for (let i = 0; i < historicData.length; i++) {
                     let k = 0;
                     if (historicData[i].day === moment(date).format("DD/MM/YYYY")) {
