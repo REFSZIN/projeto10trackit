@@ -24,7 +24,6 @@ export const TopToda = styled.section`
     z-index: 3;
 `;
 export const Day  = styled.h3`
-    width: 250px;
     height: 29px;
     font-family: 'Lexend Deca';
     font-style: normal;
@@ -35,7 +34,6 @@ export const Day  = styled.h3`
     display: inline;
 `;
 export const NumberDay  = styled.span`
-    width: 250px;
     height: 29px;
     font-family: 'Lexend Deca';
     font-style: normal;
@@ -45,7 +43,6 @@ export const NumberDay  = styled.span`
     color: #126BA5;
 `;
 export const DescDay = styled.span`
-    width: 278px;
     height: 22px;
     margin-top: 10px;
     font-family: 'Lexend Deca';
