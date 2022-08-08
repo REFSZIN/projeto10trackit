@@ -32,19 +32,21 @@ export const Day  = styled.h3`
     line-height: 29px;
     color: #126BA5;
     display: inline;
+    width: 100%;
 `;
 export const NumberDay  = styled.span`
     height: 29px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
-    font-size: 22.976px;
+    font-size: 20.976px;
     line-height: 29px;
     color: #126BA5;
 `;
 export const DescDay = styled.span`
     height: 22px;
     margin-top: 10px;
+    width: 100%;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
@@ -62,6 +64,7 @@ export const DescqDay = styled.span`
     font-size: 27.976px;
     line-height: 22px;
     color: #126BA5;
+    width: 100%;
 `;
 export const Habit  = styled.article`
     display: flex;
@@ -80,6 +83,12 @@ export const Habit  = styled.article`
     animation: pulse 1s;
     z-index: 2;
     position: relative;
+    @media only screen and (max-width: 370px) {
+    width: 100%;
+    margin: 0px;
+    border-radius: 12px;
+    margin-bottom: 5px;
+    }
 `;
 export const TitleHabit  = styled.h4`
 padding-bottom: 10px;
