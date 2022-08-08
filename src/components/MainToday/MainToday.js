@@ -32,7 +32,7 @@ export default function MainToday(){
                 <Day>{dayjs().format('dddd')}
                     <NumberDay>, {dayjs().format('DD/MM')}</NumberDay> 
                 </Day>
-                {today.length === 0?<DescDay>Nenhum hábito concluído ainda</DescDay>:<DescDay><DescqDay>{today.length - j}</DescqDay> hábitos para concluír</DescDay>}
+                {today.length === 0?<DescDay>Nenhum hábito há concluír ainda</DescDay>:<DescDay><DescqDay>{today.length - j}</DescqDay> hábitos para concluír</DescDay>}
                 <DescDayOn>{percentage.toFixed(0)} % dos hábitos concluídos</DescDayOn>
             </TopToda>  
             {today.length > 0 ? today.map((habitToday,index) =>

@@ -7,9 +7,8 @@ import UserContext from "../../UserContext";
 import { useContext, useEffect, useState} from "react";
 import moment from "moment";
 export default function MainHabit(){
-    const {ParticlesJss,localmenteLogado,historicData,getHistory} = useContext(UserContext);
+    const {ParticlesJss,localmenteLogado,historicData} = useContext(UserContext);
     const [calDate, setCalDate] = useState(new Date());
-    let today = new Date().toLocaleDateString('pt-br');
     let aux = []
     useEffect(() => {
         localmenteLogado();
@@ -36,12 +35,6 @@ export default function MainHabit(){
                             if (historicData[i].habits[j].done === true) {
                                 k++;
                             }
-                        }
-                        if (k === historicData[i].habits.length && historicData[i].day !== today) {
-                            return 'fez'
-                        }
-                        if (k !== historicData[i].habits.length && historicData[i].day !== today) {
-                            return 'naoFez'
                         }
                     }
                 }

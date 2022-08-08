@@ -21,7 +21,7 @@ export const TopToda = styled.section`
     margin-right: 5%;
     margin-bottom: 20px;
     animation: slideInLeft 1s;
-    z-index: 2;
+    z-index: 3;
 `;
 export const Day  = styled.h3`
     width: 250px;

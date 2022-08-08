@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const MainHab = styled.div`
     width: 100%;
-    height: 100vh;
+    height: fit-content;
     background-color: #E5E5E5;
     padding-top: 70px;
     padding-bottom: 70px;
