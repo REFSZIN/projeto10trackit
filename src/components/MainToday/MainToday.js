@@ -9,6 +9,7 @@ import { useContext } from "react";
 export default function MainToday(){
     dayjs.extend(isLeapYear)
     dayjs.locale('pt-br')
+    let display = "";
     const {ParticlesJss,localmenteLogado,getToday,today,postUnCheck,postCheck,percentage,setPercentage} = useContext(UserContext);
     useEffect(() => {
         localmenteLogado();
@@ -26,10 +27,35 @@ export default function MainToday(){
         }
     setPercentage((100 * (k / today.length)));
 }
+switch (dayjs().format('dddd')) {
+    case 'segunda-feira':
+        display = "Segunda";
+        break;    
+    case 'terça-feira':
+        display = "Terça";
+        break;    
+    case 'quarta-feira':
+        display = "Quarta";
+        break;    
+    case 'quinta-feira':
+        display = "Quinta";
+        break;    
+    case 'sexta-feira':
+        display = "Sextou";
+        break;    
+    case 'sabado':
+        display = "Sabadão";
+        break;    
+    case 'domingo':
+        display = "Domingão";
+        break;    
+    default:
+        ;
+    }
     return(
         <MainToda>
             <TopToda>
-                <Day>{dayjs().format('dddd')}
+                <Day>{display}
                     <NumberDay>, {dayjs().format('DD/MM')}</NumberDay> 
                 </Day>
                 {today.length === 0?<DescDay>Nenhum hábito há concluír ainda</DescDay>:<DescDay><DescqDay>{today.length - j}</DescqDay> hábitos para concluír</DescDay>}
