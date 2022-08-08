@@ -167,7 +167,7 @@ export const BoxUnCheck = styled.div`
     }
 `;
 export const DescDayOn  = styled.span`
-    width: 238px;
+    width: 100%;
     height: 22px;
     font-family: 'Lexend Deca';
     font-style: normal;
