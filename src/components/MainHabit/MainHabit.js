@@ -18,7 +18,9 @@ export default function MainHabit(){
     const setClicks = [setClike1,setClike2,setClike3,setClike4,setClike5,setClike6,setClike7]
     const dias = ["D","S","T","Q","Q","S","S"];
     useEffect(() => {
-        localmenteLogado();
+        if( localStorage.length > 0){
+            localmenteLogado();
+        }
         setLoad(0);
         getHabits();
         setClike(false)
