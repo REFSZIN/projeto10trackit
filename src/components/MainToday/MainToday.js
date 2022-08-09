@@ -12,7 +12,9 @@ export default function MainToday(){
     let display = "";
     const {ParticlesJss,localmenteLogado,getToday,today,postUnCheck,postCheck,percentage,setPercentage} = useContext(UserContext);
     useEffect(() => {
-        localmenteLogado();
+        if( localStorage.length > 0){
+            localmenteLogado();
+        }
         getToday();
     }, []);
     let j = 0;
