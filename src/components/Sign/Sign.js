@@ -19,7 +19,6 @@ export default function Sing(){
         setLoad(1);
         postSign()
             .then(() => {
-                
                 navigate("/hoje");
                 setLoad(0);
             })
