@@ -7,7 +7,7 @@ export default UserContext;
 export function UserProvider (props){
     const [color, setColor] = useState([false, false, false, false, false, false, false]);
     const [token, setToken] = useState(null);
-    const [data, setData] = useState(JSON.parse(localStorage.getItem("User")));
+    const [data, setData] = useState(JSON.parse(localStorage.getItem("user")));
     const [habitData,setHabitData] = useState([]);
     const [today,setToday] = useState([]);
     const [historicData, setHistoricData] = useState([]);
@@ -66,7 +66,7 @@ const postSign = async () => {
             setName(res.data.name);   
             setLoad(0);
             setData(res.data)
-            localStorage.setItem("User",JSON.stringify(res.data))
+            localStorage.setItem("user",JSON.stringify(res.data))
         })
         req.catch(err => {
             alert(err.response.data.message);

@@ -19,8 +19,10 @@ export default function Sing(){
         setLoad(1);
         postSign()
             .then(() => {
-                navigate("/hoje");
                 setLoad(0);
+                setTimeout(() => {
+                    navigate("/hoje");
+                }, 1000);
             })
             .catch(e => {
                 alert(e.response.user.message);

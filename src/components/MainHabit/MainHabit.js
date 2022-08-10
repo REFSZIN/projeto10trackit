@@ -6,7 +6,7 @@ import React from 'react'
 import {ArticleDaysTitle,MainHab,BtnCreateExit,ArticleDays,TopMainHabit,H2,BoxIcon,CreateHabit,InputCreateHabit,DivDays,DaysCreateHabit,BoxBtn,BtnCreate,BoxHabit,BoxTitleHabit,TitleHabit,DaysHabit, BoxAvisoHabit,Aviso} from "./style.js";
 
 export default function MainHabit(){
-    const {ParticlesJs,localmenteLogado,postHabits,deleteHabits,nameHabit,setNameHabit,daysHabit,setDaysHabit,setLoad,load,habitData,getHabits,click,setClike} = useContext(UserContext);
+    const {ParticlesJs,postHabits,deleteHabits,nameHabit,setNameHabit,daysHabit,setDaysHabit,setLoad,load,habitData,getHabits,click,setClike} = useContext(UserContext);
     const [click1, setClike1] = useState(false);
     const [click2, setClike2] = useState(false);
     const [click3, setClike3] = useState(false);

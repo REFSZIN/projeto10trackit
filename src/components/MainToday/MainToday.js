@@ -14,8 +14,8 @@ export default function MainToday(){
     useEffect(() => {
         if( localStorage.length > 0){
             localmenteLogado();
+            getToday();
         }
-        getToday();
     }, []);
     let j = 0;
     for (let i = 0; i < today.length; i++) {
