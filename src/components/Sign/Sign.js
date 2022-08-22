@@ -13,7 +13,6 @@ export default function Sing(){
         localmenteLogado();
         setLoad(0);
     }, []);
-    
     function login(event) {
         event.preventDefault();
         setLoad(1);
