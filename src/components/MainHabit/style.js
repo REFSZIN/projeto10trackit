@@ -22,6 +22,7 @@ export const TopMainHabit  = styled.section`
     margin-bottom: 20px;
     justify-content: space-between;
     align-items: center;
+    
 `;
 export const H2  = styled.h2`
     font-family: 'Lexend Deca';
